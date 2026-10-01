@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "republic-in-ruins.trade-post",
+  "name": "Trade Post",
+  "version": "1.0.0",
+  "author": "Aislan",
+  "description": "Makes the Survival Trade Post charge for its output. The post is an ordinary factory that produces goods from nothing at a worker-driven rate and holds them in real storages; this plugin deducts money whenever those storages are drained by a loading vehicle, turning free factory output into a purchase.",
+  "dll": "trade_post.dll",
+  "loaderApi": { "min": 1, "max": 1 },
+  "supportedGameVersions": ["1.1.1.9"],
+  "requiredSymbols": [], "optionalSymbols": [],
+  "hookIntents": [
+    { "symbol": "wrsr.observed.rva_001d1e80", "interaction": "post-hook", "phase": "runtime", "temperature": "UNKNOWN" }
+  ],
+  "dependencies": [], "conflicts": [], "loadBefore": [], "loadAfter": [],
+  "defaultPriority": 9800,
+  "enabledByDefault": true
+}

@@ -1,0 +1,64 @@
+$SUBMATERIAL lambert1
+$TEXTURE_MTL 0 skin_lambert1_black.dds
+$TEXTURE 1 blankspecular.dds
+$TEXTURE 2 blankbump.dds
+$DIFFUSECOLOR 0.800000 0.800000 0.800000 1.000000
+$SPECULARCOLOR 0.700000 0.700000 0.700000 1.000000
+$AMBIENTCOLOR 0.800000 0.800000 0.800000 1.000000
+$SPECULARPOWER 2.0
+
+$SUBMATERIAL tp_rust
+$TEXTURE_MTL 0 tp_rust.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$SUBMATERIAL tp_tarp
+$TEXTURE_MTL 0 tp_tarp.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$SUBMATERIAL tp_redpaint
+$TEXTURE_MTL 0 tp_redpaint.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$SUBMATERIAL tp_iron
+$TEXTURE_MTL 0 tp_iron.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$SUBMATERIAL tp_glow
+$TEXTURE_MTL 0 tp_glow.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$SUBMATERIAL tp_bone
+$TEXTURE_MTL 0 tp_bone.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$END

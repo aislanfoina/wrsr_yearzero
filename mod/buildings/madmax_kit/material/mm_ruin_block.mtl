@@ -1,0 +1,67 @@
+$SUBMATERIAL tp_rust
+$TEXTURE_MTL 0 tp_rust.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+
+$DIFFUSECOLOR 0.90 0.90 0.90 1.0
+$SPECULARCOLOR 0.35 0.35 0.35 1.0
+$AMBIENTCOLOR 1.0 1.0 1.0 1.0
+
+$SPECULARPOWER 2.000000
+
+$SUBMATERIAL tp_ground
+$TEXTURE_MTL 0 tp_ground.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+
+$DIFFUSECOLOR 0.90 0.90 0.90 1.0
+$SPECULARCOLOR 0.35 0.35 0.35 1.0
+$AMBIENTCOLOR 1.0 1.0 1.0 1.0
+
+$SPECULARPOWER 2.000000
+
+$SUBMATERIAL tp_tire
+$TEXTURE_MTL 0 tp_tire.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+
+$DIFFUSECOLOR 0.90 0.90 0.90 1.0
+$SPECULARCOLOR 0.35 0.35 0.35 1.0
+$AMBIENTCOLOR 1.0 1.0 1.0 1.0
+
+$SPECULARPOWER 2.000000
+
+$SUBMATERIAL tp_iron
+$TEXTURE_MTL 0 tp_iron.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+
+$DIFFUSECOLOR 0.90 0.90 0.90 1.0
+$SPECULARCOLOR 0.35 0.35 0.35 1.0
+$AMBIENTCOLOR 1.0 1.0 1.0 1.0
+
+$SPECULARPOWER 2.000000
+
+$SUBMATERIAL tp_brick
+$TEXTURE_MTL 0 tp_brick.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+
+$DIFFUSECOLOR 0.90 0.90 0.90 1.0
+$SPECULARCOLOR 0.35 0.35 0.35 1.0
+$AMBIENTCOLOR 1.0 1.0 1.0 1.0
+
+$SPECULARPOWER 2.000000
+
+$SUBMATERIAL tp_concrete
+$TEXTURE_MTL 0 tp_concrete.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+
+$DIFFUSECOLOR 0.90 0.90 0.90 1.0
+$SPECULARCOLOR 0.35 0.35 0.35 1.0
+$AMBIENTCOLOR 1.0 1.0 1.0 1.0
+
+$SPECULARPOWER 2.000000
+
+$END

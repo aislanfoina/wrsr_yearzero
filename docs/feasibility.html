@@ -1,0 +1,427 @@
+<title>Republic in Ruins</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#E4E6E1; --surface:#F1F2EE; --sunk:#DADCD5;
+  --ink:#1A1D1A; --ink-2:#565C55; --ink-3:#7C8279;
+  --line:#C6C9C0; --line-2:#B0B4A9;
+  --accent:#A85F0D;
+  --tier-data:#146667; --tier-data-bg:#D9E8E6;
+  --tier-plug:#A85F0D; --tier-plug-bg:#F2E4CE;
+  --tier-deep:#933121; --tier-deep-bg:#F1DCD6;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#141617; --surface:#1C1F21; --sunk:#101213;
+    --ink:#E3E5E0; --ink-2:#A0A69C; --ink-3:#767C72;
+    --line:#2F3436; --line-2:#3D4345;
+    --accent:#DD9A44;
+    --tier-data:#5FB3AE; --tier-data-bg:#16292A;
+    --tier-plug:#DD9A44; --tier-plug-bg:#2C2419;
+    --tier-deep:#D5715C; --tier-deep-bg:#2E1B17;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#141617; --surface:#1C1F21; --sunk:#101213;
+  --ink:#E3E5E0; --ink-2:#A0A69C; --ink-3:#767C72;
+  --line:#2F3436; --line-2:#3D4345;
+  --accent:#DD9A44;
+  --tier-data:#5FB3AE; --tier-data-bg:#16292A;
+  --tier-plug:#DD9A44; --tier-plug-bg:#2C2419;
+  --tier-deep:#D5715C; --tier-deep-bg:#2E1B17;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px 96px}
+.col{max-width:68ch}
+
+.mast{border-bottom:2px solid var(--ink);padding:52px 0 22px;margin-bottom:40px}
+.stencil{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
+  display:flex;flex-wrap:wrap;gap:10px 20px;margin-bottom:22px;
+}
+.stencil span{white-space:nowrap}
+h1{
+  font-family:Oswald,"Arial Narrow",sans-serif;font-weight:600;
+  font-size:clamp(40px,7vw,74px);line-height:.96;letter-spacing:-.01em;
+  margin:0 0 18px;text-wrap:balance;text-transform:uppercase;
+}
+.dek{font-size:19px;line-height:1.5;color:var(--ink-2);max-width:60ch;margin:0}
+.dek b{color:var(--ink);font-weight:600}
+
+section{margin-top:60px}
+h2{
+  font-family:Oswald,"Arial Narrow",sans-serif;font-weight:500;text-transform:uppercase;
+  font-size:26px;letter-spacing:.02em;margin:0 0 6px;
+  padding-bottom:8px;border-bottom:1px solid var(--line-2);
+  display:flex;align-items:baseline;gap:14px;
+}
+h2 .num{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent);font-weight:600}
+.lede{color:var(--ink-2);margin:14px 0 26px;max-width:68ch}
+h3{
+  font-family:"IBM Plex Sans",sans-serif;font-size:16px;font-weight:600;
+  margin:0 0 6px;letter-spacing:.01em;
+}
+p{margin:0 0 14px}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+code{
+  font-family:"IBM Plex Mono",monospace;font-size:.88em;
+  background:var(--sunk);border:1px solid var(--line);border-radius:3px;
+  padding:.08em .34em;color:var(--ink);
+}
+
+.verdict{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:26px}
+@media(min-width:760px){.verdict{grid-template-columns:repeat(2,1fr)}}
+.vcard{background:var(--surface);padding:20px 22px;display:flex;flex-direction:column;gap:7px}
+.vcard .k{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.vcard .v{font-family:Oswald,sans-serif;font-size:21px;line-height:1.15;text-transform:uppercase;letter-spacing:.01em}
+.vcard p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+
+.stack{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.layer{
+  display:grid;gap:4px 18px;background:var(--surface);
+  border:1px solid var(--line);border-left:4px solid var(--tier);
+  padding:15px 18px;
+}
+@media(min-width:820px){.layer{grid-template-columns:212px 1fr 128px;align-items:start}}
+.layer .lname{font-family:Oswald,sans-serif;font-size:17px;text-transform:uppercase;letter-spacing:.02em;color:var(--tier)}
+.layer .lsub{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);display:block;text-transform:none;letter-spacing:0;margin-top:1px}
+.layer .ldesc{font-size:14.5px;color:var(--ink-2);line-height:1.5}
+.layer .lcost{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--tier);align-self:center;
+}
+.t-data{--tier:var(--tier-data)} .t-plug{--tier:var(--tier-plug)} .t-deep{--tier:var(--tier-deep)}
+
+.tblwrap{overflow-x:auto;border:1px solid var(--line);background:var(--surface);margin-top:8px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14.5px}
+thead th{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);text-align:left;font-weight:500;
+  padding:12px 16px;border-bottom:1px solid var(--line-2);background:var(--sunk);
+  white-space:nowrap;
+}
+tbody td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+tbody tr:last-child td{border-bottom:0}
+tbody td:first-child{color:var(--ink);font-weight:500;width:22%}
+.pill{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.07em;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;
+}
+.p-data{background:var(--tier-data-bg);color:var(--tier-data)}
+.p-plug{background:var(--tier-plug-bg);color:var(--tier-plug)}
+.p-deep{background:var(--tier-deep-bg);color:var(--tier-deep)}
+
+.finds{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+@media(min-width:720px){.finds{grid-template-columns:1fr 1fr}}
+.find{background:var(--surface);padding:19px 21px}
+.find h3{color:var(--ink)}
+.find p{font-size:14.5px;color:var(--ink-2);margin:0}
+.find .tag{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--tier-data);display:block;margin-bottom:7px;
+}
+
+.chain{
+  font-family:"IBM Plex Mono",monospace;font-size:13px;background:var(--sunk);
+  border:1px solid var(--line);padding:16px 18px;margin:6px 0 18px;
+  overflow-x:auto;white-space:nowrap;color:var(--ink-2);line-height:2.1;
+}
+.chain b{color:var(--ink);font-weight:600}
+.chain .ar{color:var(--accent);padding:0 8px}
+.chain .new{color:var(--tier-deep);font-weight:600}
+
+.limits{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line)}
+.limits li{background:var(--surface);padding:15px 18px;font-size:14.5px;color:var(--ink-2)}
+.limits b{color:var(--ink);font-weight:600;display:block;margin-bottom:3px;font-size:15px}
+
+.phases{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.phase{
+  background:var(--surface);border:1px solid var(--line);padding:18px 20px;
+  display:grid;gap:4px 20px;
+}
+@media(min-width:820px){.phase{grid-template-columns:64px 1fr}}
+.phase .pn{font-family:Oswald,sans-serif;font-size:34px;line-height:.9;color:var(--accent);font-weight:500}
+.phase h3{margin-bottom:5px}
+.phase p{margin:0;font-size:14.5px;color:var(--ink-2)}
+.phase .out{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);
+  margin-top:9px;display:block;
+}
+
+.note{
+  border-left:3px solid var(--accent);background:var(--surface);
+  padding:18px 22px;margin-top:26px;font-size:15px;color:var(--ink-2);
+}
+.note b{color:var(--ink)}
+.src{
+  margin-top:56px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--ink-3);line-height:1.9;
+}
+.src a{color:var(--ink-2)}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="stencil">
+    <span>Feasibility dossier</span>
+    <span>WRSR 1.1.1.9 &middot; SOVIET64.exe</span>
+    <span>Republic Mod Loader 1.0.1</span>
+  </div>
+  <h1>Republic<br>in Ruins</h1>
+  <p class="dek">Turning <b>Workers &amp; Resources: Soviet Republic</b> into a post-apocalyptic survival builder. Every mechanic you asked for is reachable &mdash; and four of the five are <b>already half-built inside the vanilla game</b>. This is what exists, what has to be written, and the order to do it in.</p>
+</header>
+
+<section>
+  <h2><span class="num">01</span> Verdict</h2>
+  <p class="lede">The short version, before the detail.</p>
+  <div class="verdict">
+    <div class="vcard">
+      <span class="k">Immigration</span>
+      <span class="v">Already in the game</span>
+      <p>Immigrants are a first-class vanilla concept &mdash; invitations, auto-invite toggles, separate source pools. You are re-pricing and re-pacing an existing system, not inventing one.</p>
+    </div>
+    <div class="vcard">
+      <span class="k">Scavenging economy</span>
+      <span class="v">Chain is complete</span>
+      <p>Demolition offices already yield <code>waste_gravel</code> and <code>waste_steel</code>; recycling plants already convert them back to gravel and steel. You need ruins to demolish, not a new industry.</p>
+    </div>
+    <div class="vcard">
+      <span class="k">Finite trade</span>
+      <span class="v">Needs a plugin</span>
+      <p>Customs house trade slots carry a content and a limit. Driving those from a stock model is the single highest-value piece of new C++ in the project.</p>
+    </div>
+    <div class="vcard">
+      <span class="k">New disasters</span>
+      <span class="v">Two viable routes</span>
+      <p>A scripted route needs zero reverse engineering and ships this week. A native route reuses the existing event roll for real severity and radius. Do both, in that order.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">02</span> The five modding layers</h2>
+  <p class="lede">Everything in this project lands on one of these. Cost rises steeply as you descend, so the discipline is to push each feature as high up the stack as it will go.</p>
+  <div class="stack">
+    <div class="layer t-data">
+      <div class="lname">Data files<span class="lsub">building.ini &middot; renderconfig.ini</span></div>
+      <div class="ldesc">Buildings, costs, production recipes, storages, connections, attractiveness. About 1,470 vanilla definitions to copy from. This is where all the themed content lives.</div>
+      <div class="lcost">No code</div>
+    </div>
+    <div class="layer t-data">
+      <div class="lname">Text table<span class="lsub">sovietEnglish.btf</span></div>
+      <div class="ldesc">7,906 UTF-16BE strings addressed by numeric ID &mdash; every building name, warning and report window. Format decoded, and a read/write tool is already in your repo.</div>
+      <div class="lcost">No code</div>
+    </div>
+    <div class="layer t-data">
+      <div class="lname">Scenario scripts<span class="lsub">Pyrois VM &middot; *.txt</span></div>
+      <div class="ldesc">A real bytecode language with continuous execution and map-wide scope. Reads the whole world; writes fires, demolitions, citizen health, vehicles, research unlocks, windows and objectives.</div>
+      <div class="lcost">Scripting</div>
+    </div>
+    <div class="layer t-plug">
+      <div class="lname">Loader plugins<span class="lsub">Tesmio API 4 &middot; C++ DLL</span></div>
+      <div class="ldesc">Declarative subsystems already written by others: new resources, new deposit types, deposit depletion, new citizen needs, generated buildings. Mostly INI configuration on top of shipped DLLs.</div>
+      <div class="lcost">Config + C++</div>
+    </div>
+    <div class="layer t-deep">
+      <div class="lname">Native hooks<span class="lsub">inline detour &middot; RVA</span></div>
+      <div class="ldesc">Anything touching the tick dispatcher, the event roll or the trade window internals. Version-locked to the executable hash and re-broken by every game patch.</div>
+      <div class="lcost">Reverse eng.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">03</span> Your five mechanics, costed</h2>
+  <p class="lede">Each row is one thing you asked for, mapped onto the layer that should carry it.</p>
+  <div class="tblwrap">
+  <table>
+    <thead>
+      <tr><th>Mechanic</th><th>What vanilla already gives you</th><th>What you must build</th><th>Layer</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>More disaster types</td>
+        <td>Fire, epidemic, earthquake and market-price shocks, each already parameterised by severity, duration and radius, plus a cheat menu that fires them on demand.</td>
+        <td>Phase A: a continuous scenario script composing new disasters from <code>Building_StartFire</code>, <code>Building_Demolish</code> and <code>Person_SetStatus</code>. Phase B: a plugin on the event roll for native severity.</td>
+        <td><span class="pill p-data">Script</span> <span class="pill p-deep">then hook</span></td>
+      </tr>
+      <tr>
+        <td>Immigrants arrive over time</td>
+        <td>A complete immigration system: an <em>Immigrants</em> population statistic, an <em>Immigrant invitations</em> panel, Soviet-bloc / third-world / expert pools, and auto-invite in either currency.</td>
+        <td>Zero the invitation cost, and gate arrival rate on a settlement-attractiveness score instead of on an instant click. The attractiveness inputs already exist as building tokens.</td>
+        <td><span class="pill p-plug">Plugin</span></td>
+      </tr>
+      <tr>
+        <td>Finite, random purchases</td>
+        <td>Trade slots that already hold a per-resource content and limit. A generic price-shock event that can name any resource. Import and export modes, and auto-purchase.</td>
+        <td>A stock model that refills slot limits on a random schedule and lets them run dry. Slots must be rebuilt on first tick, because the list freezes when the building is parsed.</td>
+        <td><span class="pill p-deep">Hook</span></td>
+      </tr>
+      <tr>
+        <td>Scavengeable map resources</td>
+        <td>Demolition offices producing <code>waste_gravel</code>, <code>waste_steel</code> and <code>waste_toxic</code>; scrapyards producing <code>waste_steel</code>, <code>waste_aluminium</code> and <code>steel</code>; recycling plants that close both loops.</td>
+        <td>Ruins pre-placed on a custom map, so there is something to demolish. New deposit types for electronic and mechanical scrap, plus depletion so they genuinely run out.</td>
+        <td><span class="pill p-data">Map</span> <span class="pill p-plug">+ plugin</span></td>
+      </tr>
+      <tr>
+        <td>Post-apocalyptic art</td>
+        <td>1,589 building meshes and a documented workshop format. A building-generator plugin that clones a donor and rewrites only its economy lines.</td>
+        <td>Meshes, textures and icons. The largest single block of work in the project by hours &mdash; and the only one that needs no engineering.</td>
+        <td><span class="pill p-data">Data</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">04</span> Six things you don&rsquo;t have to build</h2>
+  <p class="lede">The scan turned up more existing scaffolding than expected. Each of these removes work from the plan.</p>
+  <div class="finds">
+    <div class="find">
+      <span class="tag">Already shipped</span>
+      <h3>The scrap loop is closed</h3>
+      <p><code>waste_gravelrecycling</code> takes 6.0 construction waste and returns 4.0 gravel. <code>waste_steelrecycling</code> takes 1.2 metal waste and returns 0.65 steel. Your bootstrap industry is a balance pass, not a build.</p>
+    </div>
+    <div class="find">
+      <span class="tag">Already shipped</span>
+      <h3>Immigrants are a real category</h3>
+      <p>Separate from tourists and foreign workers, with their own counter in population statistics and their own invitation panel. The category you wanted to add is already the third one.</p>
+    </div>
+    <div class="find">
+      <span class="tag">Already shipped</span>
+      <h3>Price events are resource-generic</h3>
+      <p>The market-shock message is assembled from a resource name plus a direction, not hard-coded to oil, iron and coal. Scarcity messaging for any commodity is a data problem.</p>
+    </div>
+    <div class="find">
+      <span class="tag">Already shipped</span>
+      <h3>Deposits can already be finite</h3>
+      <p>A depletion plugin drains the deposit texture itself as mines extract. It survives saves, dims the minimap, degrades source quality, and keeps working if you later uninstall it.</p>
+    </div>
+    <div class="find">
+      <span class="tag">Decoded this session</span>
+      <h3>The text table is open</h3>
+      <p>Big-endian header, an index of id / char-offset / char-length triples, then a UTF-16BE blob. A Python reader and writer now sits in <code>tools/btf.py</code> and round-trips the shipped file byte for byte.</p>
+    </div>
+    <div class="find">
+      <span class="tag">Confirmed</span>
+      <h3>Your loader hosts the good plugins</h3>
+      <p>Republic Mod Loader accepts Tesmio API 3 and 4 plugins, which is the range TesmioLoader targets. Its resource, deposit, depletion, needs and building generators are reachable from the loader you already run.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">05</span> The bootstrap chain</h2>
+  <p class="lede">This is the survival opening the mechanics above produce &mdash; and every step of it exists in vanilla except the first.</p>
+  <div class="chain">
+    <span class="new">ruined building</span><span class="ar">&rarr;</span>demolition office<span class="ar">&rarr;</span><b>waste_gravel</b><span class="ar">&rarr;</span>gravel recycling<span class="ar">&rarr;</span><b>gravel</b><span class="ar">&rarr;</span>construction<br>
+    <span class="new">ruined building</span><span class="ar">&rarr;</span>demolition office<span class="ar">&rarr;</span><b>waste_steel</b><span class="ar">&rarr;</span>steel recycling<span class="ar">&rarr;</span><b>steel</b><span class="ar">&rarr;</span>construction<br>
+    <span class="new">scrap field</span><span class="ar">&rarr;</span><span class="new">salvage yard</span><span class="ar">&rarr;</span><span class="new">ecomponents</span><span class="ar">&rarr;</span>electronics<span class="ar">&rarr;</span>advanced industry
+  </div>
+  <div class="col">
+    <p>Rows one and two need no new resources, no new recipes and no new building types &mdash; only ruins on the map and a demolition office in the starting kit. Row three is where the deposits plugin earns its place: electronic and mechanical scrap become new deposit types painted into the resource map, mined by a re-skinned mine, and drained by the depletion plugin so the scavenging era genuinely ends.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">06</span> Hard limits</h2>
+  <p class="lede">Four boundaries worth designing around now, rather than discovering in month three.</p>
+  <ul class="limits">
+    <li><b>You cannot add a new building type.</b> The <code>$TYPE_*</code> tokens are a compiled string-comparison chain, and each type has a matching arm in a 21 KB tick dispatcher. New behaviour has to be dressed as an existing type &mdash; a salvage yard is a mine, a shelter is a residential building.</li>
+    <li><b>Citizens hold at most seven simultaneous needs.</b> The demand array is inline in the person record; enlarging it would move every field after it and break save compatibility. Budget your new survival needs against that ceiling.</li>
+    <li><b>Native work is pinned to one executable.</b> Hooks are validated against the exact build. A game patch invalidates every RVA in the project at once, so keep the number of hooked addresses deliberately small and documented.</li>
+    <li><b>Scenario scripts read far more than they write.</b> They see every building, person, vehicle and storage, but resource writes are not exposed &mdash; the <code>Add*</code> calls accumulate into a local total rather than depositing into a building. Anything that must move goods needs a plugin.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">07</span> Build order</h2>
+  <p class="lede">Sequenced so each phase is playable on its own, and nothing blocks on reverse engineering that has not happened yet.</p>
+  <div class="phases">
+    <div class="phase">
+      <div class="pn">1</div>
+      <div>
+        <h3>Prove the pipeline</h3>
+        <p>Ship one re-skinned ruin building, one custom text string and one trivial scenario script through the loader. Nothing here is interesting &mdash; the point is that the build, package and load path works end to end before any real content depends on it.</p>
+        <span class="out">Deliverable &mdash; a workshop item that loads and shows your own name in your own words</span>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="pn">2</div>
+      <div>
+        <h3>The scavenging map</h3>
+        <p>A landscape item with ruins placed across it and a starting kit built around a demolition office. Rows one and two of the bootstrap chain become playable using nothing but vanilla mechanics and your art.</p>
+        <span class="out">Deliverable &mdash; the survival opening, fully playable, zero C++</span>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="pn">3</div>
+      <div>
+        <h3>Scripted disasters</h3>
+        <p>A continuous scenario script that rolls its own events on any map and expresses them through fires, demolitions and citizen health. Radiation storms, structural collapse, raider attacks &mdash; all composable from primitives the VM already exposes.</p>
+        <span class="out">Deliverable &mdash; new disaster types with no reverse engineering</span>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="pn">4</div>
+      <div>
+        <h3>Scarcity at the border</h3>
+        <p>The first serious plugin. Rebuild customs house trade slots on first tick, drive their limits from a random stock model, and let them empty. This is the change that converts the game from city builder to survival, and it deserves to be built alone and tested hard.</p>
+        <span class="out">Deliverable &mdash; finite, random, exhaustible imports</span>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="pn">5</div>
+      <div>
+        <h3>Immigration and scrap deposits</h3>
+        <p>Free the invitation cost and pace arrivals off attractiveness. Register electronic and mechanical scrap as resources, declare them as deposit types, paint them into the resource map, and hand them to the depletion plugin.</p>
+        <span class="out">Deliverable &mdash; population and salvage both become earned, not bought</span>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="pn">6</div>
+      <div>
+        <h3>Art pass</h3>
+        <p>The long tail. Re-skin the building set to the theme, generate variants from donors where the shape allows, and replace the string table wholesale so the tone matches the mechanics.</p>
+        <span class="out">Deliverable &mdash; the mod stops reading as a reskin of a Soviet game</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">08</span> Open questions</h2>
+  <div class="col">
+    <p>Three things I could not settle from the files alone, each of which changes a design decision:</p>
+    <p><b>Do the TesmioLoader plugins load cleanly under Republic Mod Loader?</b> The declared API range says yes, and the compatibility host already classifies twelve of your current plugins as Tesmio-hosted &mdash; but those specific DLLs have not been observed running in your install. Worth a single test launch before phase five depends on it.</p>
+    <p><b>Can ruins be pre-placed as demolishable buildings in the map editor?</b> Custom landscapes support modded buildings, so the mechanism exists. Whether a building placed at map-authoring time can be demolished for waste on day one of a save is an in-editor test, not a file question.</p>
+    <p><b>How much of the customs house window is safe to drive?</b> The trade-slot rebuild point is documented, but whether limits can be written every tick without the panel fighting back is something only a running game will tell you.</p>
+  </div>
+  <div class="note">
+    <b>Already in your repo.</b> <code>tools/btf.py</code> reads and writes the game&rsquo;s string table, and round-trips <code>sovietEnglish.btf</code> byte for byte across all 7,906 entries. <code>tools/en.json</code> holds the full English text as editable JSON &mdash; it is also the fastest way to search for a mechanic, since the game names everything it implements.
+  </div>
+</section>
+
+<div class="src">
+  Sources &mdash; game install and workshop content scanned locally (WRSR 1.1.1.9, 76 subscribed items).
+  <a href="https://github.com/Ultimate-Universe/WRSR-RepublicModLoader">Republic Mod Loader</a> &middot;
+  <a href="https://github.com/MaxLegend/TesmioLoader">TesmioLoader</a> &middot;
+  <a href="https://wiki.hoodedhorse.com/Workers_Resources_Soviet_Republic/General_modding">Official modding wiki</a> &middot;
+  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3773169177">TesmioLoader on Steam Workshop</a>
+</div>
+
+</div>

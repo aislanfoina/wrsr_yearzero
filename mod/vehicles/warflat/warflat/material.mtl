@@ -1,0 +1,64 @@
+$SUBMATERIAL platform_ncl1_1
+$TEXTURE_MTL 0 skin_platform_ncl1_1_wasteland.dds
+$TEXTURE 1 trains/russian_vagon_open/specular.dds
+$TEXTURE 2 trains/russian_vagon_open/bump.dds
+$DIFFUSECOLOR 1.0 1.0  1.0  1
+$SPECULARCOLOR 1 1 1 1
+$AMBIENTCOLOR 1.0  1.0  1.0  1
+$SPECULARPOWER 2
+
+$SUBMATERIAL vagon_truck
+$TEXTURE_MTL 0 skin_vagon_truck_wasteland.dds
+$TEXTURE 1 trains/vagon_truck_specular.dds
+$TEXTURE 2 trains/vagon_truck_bump.dds
+$DIFFUSECOLOR 1.0 1.0  1.0  1
+$SPECULARCOLOR 1 1 1 1
+$AMBIENTCOLOR 1.0  1.0  1.0  1
+$SPECULARPOWER 2
+
+$SUBMATERIAL tp_rust
+$TEXTURE_MTL 0 tp_rust.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$SUBMATERIAL tp_tarp
+$TEXTURE_MTL 0 tp_tarp.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$SUBMATERIAL tp_tire
+$TEXTURE_MTL 0 tp_tire.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$SUBMATERIAL tp_redpaint
+$TEXTURE_MTL 0 tp_redpaint.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$SUBMATERIAL tp_iron
+$TEXTURE_MTL 0 tp_iron.dds
+$TEXTURE 1 buildings/blankspecular.dds
+$TEXTURE 2 buildings/blankbump.dds
+$DIFFUSECOLOR 0.75 0.75 0.75 1.0
+$SPECULARCOLOR 0.3 0.3 0.3 1.0
+$AMBIENTCOLOR 0.7 0.7 0.7 1.0
+$SPECULARPOWER 2.0
+
+$END

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "republic-in-ruins.fallout",
+  "name": "Fallout",
+  "version": "0.1.0",
+  "author": "Aislan",
+  "description": "Contamination instead of crime: radiation zones around the craters, hot salvage halos and contaminated arrivals feed each citizen's crime level, so the police, court and prison chain becomes the Decontamination Task Force, the Radiology Board and the Recovery Center.",
+  "dll": "fallout.dll",
+  "loaderApi": { "min": 1, "max": 1 },
+  "supportedGameVersions": ["1.1.1.9"],
+  "requiredSymbols": [], "optionalSymbols": [],
+  "hookIntents": [
+    { "symbol": "wrsr.observed.rva_00139a70", "interaction": "post-hook", "phase": "runtime", "temperature": "UNKNOWN" }
+  ],
+  "dependencies": [], "conflicts": [], "loadBefore": [], "loadAfter": [],
+  "defaultPriority": 9750,
+  "enabledByDefault": true
+}

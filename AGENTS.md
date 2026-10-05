@@ -235,10 +235,15 @@ wrong building until this is fixed and retested.
 
 Next steps: install the packed items, remove the old per-kit dev items, rebuild the map, check the
 signs and the mechanics above in game; then Workshop: create the four items in the game (main menu ->
-Workshop; Steam ids and `workshop_wip/<id>` folders), put the ids into `tools/yearzero_workshop.py`
-`ITEMS`, `build.ps1 -Install`, upload as private (`$VISIBILITY 2`; Steam's enum: 0 public, 1 friends,
-2 private, 3 unlisted), set Required Items (buildings, vehicles, words, RML) on the plugins page, go
-public. The map stays unpublished unless BATON agrees.
+Workshop -> Your items (WIP) -> green +; the form wants a preview PNG under 1 MB, a name and a UTF-8
+TXT description; creating gives Steam ids and `workshop_wip/<id>` folders), put the ids into
+`tools/yearzero_workshop.py` `ITEMS`, `build.ps1 -Install`, upload each from its Edit item page as
+**Unpublished** (`$VISIBILITY 0`: the game's values are 0 unpublished, 1 friends only, **2 public** -
+not Steam's enum), set Required Items (buildings, vehicles, words, RML) on the plugins page, go
+public. The upload is the page's green check ("Save changes"); there is no other upload button.
+Upload the **plugins item** from a game started straight from Steam (no RML) after a fresh
+`build.ps1 -Install`: with RML its DLLs are loaded and plugins may write into the folder, and Steam
+fails the upload with "Unknown Error (Error code 2)" (seen with the Space Race, 2026-10-05). The map stays unpublished unless BATON agrees.
 
 ## 12. Links
 

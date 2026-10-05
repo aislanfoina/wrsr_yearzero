@@ -14,7 +14,7 @@ items (tools/yearzero.py wip_index), so install before converting.
 
 Publishing (the game's uploader: main menu -> Workshop): create each item in the game first to
 get its Steam id, put the ids in ITEMS, run build.ps1 -Install, then upload. $VISIBILITY is
-Steam's: 0 public, 1 friends only, 2 private, 3 unlisted.
+the game's, not Steam's: 0 unpublished, 1 friends only, 2 PUBLIC.
 """
 import os
 import re
@@ -24,7 +24,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'build', 'workshop')
 PREVIEWS = os.path.join(ROOT, 'build', 'yearzero_previews')      # made by tools/yearzero_readme_images.py
 OWNER = 76561198165729857
-VISIBILITY = 2
+VISIBILITY = 0                  # unpublished; switch to public on Steam once the items are checked
 REPO = 'https://github.com/aislanfoina/wrsr_yearzero'
 RML = 'https://steamcommunity.com/sharedfiles/filedetails/?id=3787969749'
 BATON = 'https://steamcommunity.com/sharedfiles/filedetails/?id=3753525456'

@@ -119,6 +119,15 @@ Part of [b]Republic in Ruins[/b]: it goes with that item's plugins, which turn t
 ''' + FOOTER
 
 DESCS = {'republic_in_ruins': PACKAGE, 'buildings': BUILDINGS, 'vehicles': VEHICLES_DESC, 'words': WORDS}
+# Required Items on Steam: item -> the items (keys here, or Steam ids) a subscriber also needs
+REQUIRED = {'republic_in_ruins': ['buildings', 'vehicles', 'words', 3787969749]}
+
+
+def workshop_items():
+    """The items as tools/workshop_upload.py reads them: key, Steam id, game item type, title,
+    store page text, the game's visibility value and Required Items (Steam ids)."""
+    return [{'key': k, 'id': v[0], 'type': v[1], 'title': v[2], 'description': DESCS[k], 'visibility': VISIBILITY,
+             'required': [ITEMS[r][0] if r in ITEMS else r for r in REQUIRED.get(k, [])]} for k, v in ITEMS.items()]
 
 
 def objects(cfg):

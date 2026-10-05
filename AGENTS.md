@@ -241,6 +241,11 @@ TXT description; creating gives Steam ids and `workshop_wip/<id>` folders), put 
 **Unpublished** (`$VISIBILITY 0`: the game's values are 0 unpublished, 1 friends only, **2 public** -
 not Steam's enum), set Required Items (buildings, vehicles, words, RML) on the plugins page, go
 public. The upload is the page's green check ("Save changes"); there is no other upload button.
+Alternative without the game: `python tools/workshop_upload.py republic_in_ruins create` creates
+the items that still have local ids (private, with the game's type tag: Script / Building / Vehicle /
+Text modification) and prints their ids; then `... content visibility` and `... required` (see the
+tool's docstring and the Space Race AGENTS.md). It talks to the signed-in Steam client and must run
+outside any sandbox. Not yet run against Steam (2026-10-05).
 Upload the **plugins item** from a game started straight from Steam (no RML) after a fresh
 `build.ps1 -Install`: with RML its DLLs are loaded and plugins may write into the folder, and Steam
 fails the upload with "Unknown Error (Error code 2)" (seen with the Space Race, 2026-10-05). The map stays unpublished unless BATON agrees.

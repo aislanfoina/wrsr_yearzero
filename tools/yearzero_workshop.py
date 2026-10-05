@@ -14,7 +14,7 @@ items (tools/yearzero.py wip_index), so install before converting.
 
 Publishing (the game's uploader: main menu -> Workshop): create each item in the game first to
 get its Steam id, put the ids in ITEMS, run build.ps1 -Install, then upload. $VISIBILITY is
-Steam's: 0 public, 1 friends only, 2 private, 3 unlisted.
+the game's, not Steam's: 0 unpublished, 1 friends only, 2 PUBLIC.
 """
 import os
 import re
@@ -24,7 +24,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'build', 'workshop')
 PREVIEWS = os.path.join(ROOT, 'build', 'yearzero_previews')      # made by tools/yearzero_readme_images.py
 OWNER = 76561198165729857
-VISIBILITY = 2
+VISIBILITY = 0                  # unpublished; switch to public on Steam once the items are checked
 REPO = 'https://github.com/aislanfoina/wrsr_yearzero'
 RML = 'https://steamcommunity.com/sharedfiles/filedetails/?id=3787969749'
 BATON = 'https://steamcommunity.com/sharedfiles/filedetails/?id=3753525456'
@@ -119,6 +119,15 @@ Part of [b]Republic in Ruins[/b]: it goes with that item's plugins, which turn t
 ''' + FOOTER
 
 DESCS = {'republic_in_ruins': PACKAGE, 'buildings': BUILDINGS, 'vehicles': VEHICLES_DESC, 'words': WORDS}
+# Required Items on Steam: item -> the items (keys here, or Steam ids) a subscriber also needs
+REQUIRED = {'republic_in_ruins': ['buildings', 'vehicles', 'words', 3787969749]}
+
+
+def workshop_items():
+    """The items as tools/workshop_upload.py reads them: key, Steam id, game item type, title,
+    store page text, the game's visibility value and Required Items (Steam ids)."""
+    return [{'key': k, 'id': v[0], 'type': v[1], 'title': v[2], 'description': DESCS[k], 'visibility': VISIBILITY,
+             'required': [ITEMS[r][0] if r in ITEMS else r for r in REQUIRED.get(k, [])]} for k, v in ITEMS.items()]
 
 
 def objects(cfg):

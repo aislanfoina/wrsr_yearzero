@@ -245,7 +245,7 @@ Alternative without the game: `python tools/workshop_upload.py republic_in_ruins
 the items that still have local ids (private, with the game's type tag: Script / Building / Vehicle /
 Text modification) and prints their ids; then `... content visibility` and `... required` (see the
 tool's docstring and the Space Race AGENTS.md). It talks to the signed-in Steam client and must run
-outside any sandbox. Not yet run against Steam (2026-10-05).
+outside any sandbox. Its `--check` works against Steam (2026-10-05); `create` has not run yet.
 Upload the **plugins item** from a game started straight from Steam (no RML) after a fresh
 `build.ps1 -Install`: with RML its DLLs are loaded and plugins may write into the folder, and Steam
 fails the upload with "Unknown Error (Error code 2)" (seen with the Space Race, 2026-10-05). The map stays unpublished unless BATON agrees.

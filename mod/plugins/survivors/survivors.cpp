@@ -409,11 +409,22 @@ static void DetourStorage(void* ctx, void* building)
 // prologue first; if the site was patched, present the live bytes instead.
 static const unsigned char* LiveOrPristine(const unsigned char* target, const unsigned char* pristine, size_t len, unsigned char* buf, const char* label)
 {
-    if (!H->readablePtr(target, len)) return pristine;
+    // The expected prologue: hook it. Another plugin's hook - an absolute jump (FF 25 00000000
+    // <addr>), a relative jump (E9 rel32) or mov rax/r11, imm64 + jmp reg - chain onto it.
+    // Anything else is not the function this plugin was built for (a different game version):
+    // refuse, rather than hook unknown code. NULL = do not hook.
+    if (!H->readablePtr(target, len < 14 ? 14 : len)) return NULL;
     if (memcmp(target, pristine, len) == 0) return pristine;
-    memcpy(buf, target, len);
-    LogLine("%s: target already patched by another plugin, chaining onto the live bytes", label);
-    return buf;
+    if ((target[0] == 0xFF && target[1] == 0x25) || target[0] == 0xE9 ||
+        (target[0] == 0x48 && target[1] == 0xB8 && target[10] == 0xFF && target[11] == 0xE0) ||
+        (target[0] == 0x49 && target[1] == 0xBB && target[10] == 0x41 && target[11] == 0xFF && target[12] == 0xE3))
+    {
+        memcpy(buf, target, len);
+        LogLine("%s: another plugin's hook is there, chaining onto it", label);
+        return buf;
+    }
+    LogLine("%s: the bytes there are not the function this plugin was built for (another game version?) - not hooked", label);
+    return NULL;
 }
 
 // --------------------------------------------------------------- exports ----
@@ -451,7 +462,7 @@ extern "C" __declspec(dllexport) int TsmPluginStart(void)
     {
         unsigned char live[32];
         const unsigned char* expect = LiveOrPristine(H->exeBase + hooks[i].rva, hooks[i].pro, hooks[i].len, live, hooks[i].label);
-        if (!H->installInlineHook(H->exeBase + hooks[i].rva, hooks[i].detour, hooks[i].tramp, expect, hooks[i].len, hooks[i].label))
+        if (!expect || !H->installInlineHook(H->exeBase + hooks[i].rva, hooks[i].detour, hooks[i].tramp, expect, hooks[i].len, hooks[i].label))
         {
             LogLine("survivors  hook %s at 0x%X did not match - not installed", hooks[i].label, hooks[i].rva);
             return 1;
